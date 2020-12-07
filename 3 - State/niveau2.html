@@ -26,6 +26,10 @@
 
                     // Indispensable pour pouvoir manipuler le state depuis incrementCounter
                     this.incrementCounter = this.incrementCounter.bind(this);
+
+                    this.decrementCounter = this.decrementCounter.bind(this);
+
+                    this.remplacerParBaba = this.remplacerParBaba.bind(this);
                 }
 
                 render() {
@@ -39,9 +43,12 @@
                                     Voici un élément Compteur, cliquez sur le
                                     bouton pour découvrir son comportement
                                 </p>
-                                <h2>Compteur : {this.state.counter}</h2>
+                                <h2>Counter : {this.state.counter}</h2>
                                 <button onClick={this.incrementCounter}>
-                                    Ajouter + 1
+                                    Add + 1
+                                </button>
+                                <button onClick={this.decrementCounter}>
+                                    Remove - 1
                                 </button>
                             </div>
                             <div>
@@ -65,6 +72,13 @@
                                     Créer un nouveau bouton Remplacer qui va
                                     déclencher une fonction remplacerParBaba
                                 </p>
+                                <hr />
+                                {this.state.text}
+                                <p>
+                                    <button onClick={this.remplacerParBaba}>
+                                        Replace text
+                                    </button>
+                                </p>
                             </div>
                         </div>
                     );
@@ -82,12 +96,21 @@
                 /**
                  * Décrémente la valeur du compteur du state
                  */
-                decrementCounter() {}
+                decrementCounter() {
+                    this.setState({
+                        counter: this.state.counter - 1,
+                    });
+                }
 
                 /**
                  * Remplace la valeur de text par "Baba"
                  */
-                remplacerParBaba() {}
+                remplacerParBaba() {
+                    this.setState({
+                        text: (this.state.text =
+                            'A common bass chord progression is C major, then G major, then A minor, and then F major.'),
+                    });
+                }
             }
 
             // Rendu dans le DOM

@@ -83,6 +83,7 @@
 
                     return (
                         <div>
+                            <h2>Vegetables [name-qty]</h2>
                             {legumes.map((legume, index) => (
                                 <Legume key={index} article={legume} />
                             ))}
@@ -105,6 +106,7 @@
                 render() {
                     return (
                         <div>
+                            <h2>Students [name-qty]</h2>
                             {this.props.listeEleves.map((eleve, index) => (
                                 <Eleve key={index} eleve={eleve} />
                             ))}

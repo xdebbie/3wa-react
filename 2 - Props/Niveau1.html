@@ -20,11 +20,31 @@
     <body>
         <div id="root"></div>
         <script type="text/babel">
+            // Note on fragments => https://stackoverflow.com/questions/47761894/why-are-fragments-in-react-16-better-than-container-divs
+            class TextField extends React.Component {
+                render() {
+                    return (
+                        <React.Fragment>
+                            <p>
+                                <label htmlFor="">Text field </label>
+                                <input type="text" />
+                            </p>
+                        </React.Fragment>
+                    );
+                }
+            }
+
+            class PrimaryButton extends React.Component {
+                render() {
+                    return <button>This button!</button>;
+                }
+            }
+
             class Consigne extends React.Component {
                 render() {
                     // Notez que la balise div est indispensable. Il ne faut renvoyer qu'un seul composant parent.
                     return (
-                        <div>
+                        <React.Fragment>
                             <p>
                                 <a href="https://fr.reactjs.org/docs/components-and-props.html">
                                     Documentation sur les composants et les
@@ -50,7 +70,7 @@
                                 Générer ce nouveau composant TextField depuis la
                                 classe Home deux fois.
                             </p>
-                        </div>
+                        </React.Fragment>
                     );
                 }
             }
@@ -65,10 +85,12 @@
             class Hello extends React.Component {
                 render() {
                     return (
-                        <div>
+                        <React.Fragment>
                             <TitleComponent />
                             <Consigne />
-                        </div>
+                            <PrimaryButton />
+                            <TextField />
+                        </React.Fragment>
                     );
                 }
             }

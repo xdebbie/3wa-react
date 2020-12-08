@@ -25,21 +25,44 @@
                         notes: [1, 10, 15, 19, 20],
                         isDisplayed: false,
                     };
+
+                    this.removeLastElementFromNotes = this.removeLastElementFromNotes.bind(
+                        this
+                    );
+                    this.changeDisplayImage = this.changeDisplayImage.bind(
+                        this
+                    );
                 }
 
                 render() {
+                    // On utilise les deux notations dans le rendu mais le code revient au même
+                    let imageElement = null;
+
+                    if (this.state.isDisplayed) {
+                        imageElement = (
+                            <img src='https://upload.wikimedia.org/wikipedia/commons/e/ee/Grumpy_Cat_by_Gage_Skidmore.jpg' />
+                        );
+                    }
+
                     return (
                         <div>
                             <div>
                                 <p>
-                                    Créer une méthode afficheTexte qui prend en
+                                    Créer une méthode showText qui prend en
                                     paramètre une chaîne de caractère
                                 </p>
                                 <p>
                                     Créer un bouton qui envoie la valeur de
-                                    state de animal en paramètre, et qui appelle
-                                    la méthode afficheTexte
+                                    state de animal en paramètre, et qui
+                                    appelle` la méthode showText
                                 </p>
+                                <button
+                                    onClick={() =>
+                                        this.showText(this.state.animal)
+                                    }
+                                >
+                                    Send the animal
+                                </button>
                             </div>
                             <div>
                                 <p>
@@ -51,6 +74,14 @@
                                     removeLastElement, qui va retirer le dernier
                                     élément des notes.
                                 </p>
+                                <button
+                                    onClick={this.removeLastElementFromNotes}
+                                >
+                                    removeLastElementFromNotes
+                                </button>
+                                {this.state.notes.map((note, index) => (
+                                    <p key={index}>{note}</p>
+                                ))}
                             </div>
                             <div>
                                 <p>
@@ -62,10 +93,47 @@
                                     changeImageDisplay, qui va changer le state
                                     de isDisplayed
                                 </p>
-                                <img src='https://lh3.googleusercontent.com/proxy/6ZzAsy8-EM4v_htV-_LZc1C8_aek5qC3Vq7xvCaWF3tdrIIfe8p0mR9d6vh3bzxf4YmSu2g1-imJlOqJlBzyH1QZFBLvErNXBw' />
+                                <button onClick={this.changeDisplayImage}>
+                                    Show the image
+                                </button>
+                                {this.state.isDisplayed && (
+                                    <p>
+                                        <img src='https://i.redd.it/lbcff2so29d31.jpg' />
+                                    </p>
+                                )}
+                                {imageElement}
                             </div>
                         </div>
                     );
+                }
+
+                /**
+                 * Show text received through the param
+                 * @param text String
+                 */
+                showText(text) {
+                    console.log(text);
+                }
+
+                /**
+                 * Remove the last element from the table
+                 */
+                removeLastElementFromNotes() {
+                    const newNotes = this.state.notes;
+                    newNotes.pop();
+
+                    this.setState({
+                        notes: newNotes,
+                    });
+                }
+
+                /**
+                 * Update the status and show (or not) the image
+                 */
+                changeDisplayImage() {
+                    this.setState({
+                        isDisplayed: !this.state.isDisplayed,
+                    });
                 }
             }
 

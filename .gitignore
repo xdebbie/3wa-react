@@ -73,3 +73,6 @@ yarn-error.log
 # VSCode settings
 .vscode/
 *.code-workspace
+
+# Other folders
+react-portfolio
